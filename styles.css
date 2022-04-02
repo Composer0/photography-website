@@ -15,9 +15,11 @@ body {
 #logo {
   color: #fff;
   font-family: "Abril Fatface";
+  z-index: 2;
 }
 
 .nav-header {
+  position: relative;
   min-height: 10vh;
   font-size: 1rem;
   display: flex;
@@ -27,6 +29,7 @@ body {
   width: 80%;
   margin: auto;
   padding: 2rem 0;
+  z-index: 2;
 }
 
 .line1,
@@ -108,7 +111,7 @@ body {
 }
 
 .nav-bar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -190,7 +193,7 @@ body {
 }
 
 .cursor.nav-active {
-  background: rgba(86, 124, 228, 0.384);
+  background: rgb(86, 124, 228);
   transform: scale(3);
 }
 
@@ -228,3 +231,7 @@ body {
     position: static !important;
 }
 /* this removes the pin-spacer which allows you to be able click on elements when you are at different scroll heights. */
+
+body.hide {
+  overflow: hidden;
+}
