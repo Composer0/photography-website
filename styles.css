@@ -156,11 +156,12 @@ body {
 .reveal-text {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 150%;
   background: #17181a;
   /* hide your texts to be later revealed */
   left: 0;
-  top: 0;
+  top: -15%;
+
 }
 
 .cursor {
@@ -173,4 +174,8 @@ body {
 
 .active {
   color: blue;
+}
+
+.scrollmagic-pin-spacer {
+    position: static !important
 }
