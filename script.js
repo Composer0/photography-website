@@ -18,10 +18,7 @@ function animateSlides() {
         // GSAP
         // gsap.to(revealImg, 1, { x: "100%"});  This was the problem that left the images on the page when it first loaded up. It essential revealed the img before the scroll could take place.
         const slideTl = gsap.timeline({defaults: {duration: 1, ease: 'power2.inOut'}});
-        let nextSlide = slides.length - 1 ===index ? 'end' : slides[index + 1]
-        pageTl.fromTo(nextSlide, {y = '0%', y: '50%'});
-        pageTl.fromTo(slide, {opacity: 1, scale: 1}, {opacity: 0, scale: 0});
-        pageTl.fromTo(nextSlide, {y = '50%', y: '0%'} -=0.5);
+        
         slideTl.fromTo(revealImg, {x: '0%'}, {x: '100%'});
         slideTl.fromTo(img, {scale: 2}, {scale: 1}, '-=1');
         // after the two objects, the -=1 makes the animation occur 1 second sooner for a simultaneous effect.
@@ -39,29 +36,63 @@ function animateSlides() {
             colorTrigger: "white",
             name: "slide"
         })
-        .addTo(controller)
+        .addTo(controller);
         // New Animation
         const pageTl = gsap.timeline();
+        let nextSlide = slides.length - 1 === index ? 'end' : slides[index + 1]
+        pageTl.fromTo(nextSlide, {y: '0%'}, {y: '50%'});
         pageTl.fromTo(slide, {opacity: 1, scale: 1}, {opacity: 0, scale: 0.5});
-
-    });
-    // Create New Scene
-    pageScene = new ScrollMagic.Scene({
-        triggerElement: slide,
-        duration: '100%',
-        triggerHook: 0
-    })
+        pageTl.fromTo(nextSlide, {y: '50%'}, {y: '0%'}, '-=0.5');
+        
+        // Create New Scene
+        pageScene = new ScrollMagic.Scene({
+            triggerElement: slide,
+            duration: '100%',
+            triggerHook: 0
+        })
         .addIndicators ({
             colorStart: "white",
             colorTrigger: "white",
             name: "page",
             indent: 200
         })
-        .setPin(slide, {pushFOllowers: false})
+        .setPin(slide, {pushFollowers: false})
         // pin has the image stay in spot that it was scrolled to and then fade to the back of the page.
         .setTween(pageTl)
         .addTo(controller);
-    )};
+    });
+
+}
+
+let mouse = document.querySelector('.cursor');
+let mouseTxt = mouse.querySelector('span');
+
+function cursor(e){
+    mouse.style.top = e.pageY + 'px';
+    mouse.style.left = e.pageX + 'px';
+}
+function activeCursor(e){
+    const item = e.target;
+    // active means you are letting the active target or click occur.
+    if(item.id === 'logo' || item.classList.contains('burger')){
+        mouse.classList.add('nav-active');
+    } else {
+        mouse.classList.remove('nav-active');
     }
+    if(item.classList.contains('explore')) {
+        mouse.classList.add('explore-active');
+        gsap.to('.title-swipe',1,{y:'0%'});
+        mouseTxt.innerText = 'Tap';
+    } else {
+        mouse.classList.remove('explore-active');
+        mouseTxt.innerText = '';
+        gsap.to('.title-swipe',1,{y:'100%'});
+    }
+}
+
+
+window.addEventListener('mousemove', cursor);
+window.addEventListener('mouseover', activeCursor);
+
 
 animateSlides();
