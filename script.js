@@ -110,6 +110,63 @@ function navToggle(e){
     }
 }
 
+// Barba Page Transitions
+barba.init({
+    views: [
+        {
+            namespace: 'home',
+            beforeEnter(){
+                animateSlides();
+                // was originally at the bottom of file, but we moved it here to ensure that the animations only run when the site is initially accessed.
+                logo.href = './index.html';
+                // changes html link to avoid bug from page transition.
+            },
+            beforeLeave(){
+                slideScene.destroy();
+                pageScene.destroy();
+                controller.destroy();
+                // ensures that Scroll Magic does not transfer to the next page... fashion, hike, ect.
+            }
+        },
+        {
+            namespace: 'fashion',
+            beforeEnter(){
+                logo.href = '../index.html';
+                // dynamically update to avoid bug in link.
+                gsap.fromTo('.nav-header',1,{y:'100'}, {y:'0', ease: "power2.inOut"})
+            }
+        }
+    ],
+
+    transitions: [
+        {
+            leave({current,next}){
+                let done = this.async();
+                // an animation
+                const tl = gsap.timeline({defaults: {ease: "power2.inOut"}});
+                tl.fromTo(current.container,1,{opacity:1}, {opacity:0}
+                );
+                tl.fromTo('.swipe', 0.75, {x:'-100%'}, {x: '0%', onComplete:done}, '-=0.5'
+                );
+                // this covers the page with the initial swipe when leaving.
+            },
+            enter({current,next}){
+                // always compare brackets from the leave and enter to ensure you don't get stuck on the current webpage because the function can't execute.
+                let done = this.async();
+                // scroll to the top
+                window.scrollTo(0,0);
+                // an animation
+                const tl = gsap.timeline({defaults: {ease: "power2.inOut"}});
+                tl.fromTo('.swipe', 1, {x:'0%'}, {x: '100%', stagger: 0.25, onComplete:done}
+                );
+                // this introduces the new page by producing the addiitonal two swipes.
+                tl.fromTo(next.container, 1, {opacity:0},{opacity:1}
+                    );
+            }
+        }
+    ]
+})
+
 // EventListeners
 
 burger.addEventListener('click', navToggle)
@@ -117,4 +174,3 @@ window.addEventListener('mousemove', cursor);
 window.addEventListener('mouseover', activeCursor);
 
 
-animateSlides();
