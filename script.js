@@ -2,6 +2,9 @@ let controller;
 let slideScene;
 let pageScene;
 let detailScene
+const mouse = document.querySelector('.cursor');
+const mouseTxt = mouse.querySelector('span');
+const burger = document.querySelector('.burger');
 
 // Slides that occur throughout the page. Primarily from left to right concerning images and text.
 function animateSlides() {
@@ -63,9 +66,9 @@ function animateSlides() {
 
 }
 
-const mouse = document.querySelector('.cursor');
-const mouseTxt = mouse.querySelector('span');
-const burger = document.querySelector('.burger');
+// const mouse = document.querySelector('.cursor');
+// const mouseTxt = mouse.querySelector('span');
+// const burger = document.querySelector('.burger');
 
 function cursor(e){
     mouse.style.top = e.pageY + 'px';
