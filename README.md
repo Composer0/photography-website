@@ -13,3 +13,6 @@ Website is responsive and has been modified with the lowest value established at
 
 Issues/Concerns:
 At this time the fill effect established by GSAP on the main index page works only on dark modes, I am looking into understand how the fill effect can work on websites with a lighter background color.
+
+Future Steps:
+Remove theme of travel and use as a mock Portfolio Site for clients.
