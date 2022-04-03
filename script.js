@@ -1,7 +1,7 @@
 let controller;
 let slideScene;
 let pageScene;
-
+let detailScene
 
 // Slides that occur throughout the page. Primarily from left to right concerning images and text.
 function animateSlides() {
@@ -31,11 +31,11 @@ function animateSlides() {
             // reverse: false allows the page to leave the revealed information in place.
         })
         .setTween(slideTl)
-        .addIndicators({
-            colorStart: "white",
-            colorTrigger: "white",
-            name: "slide"
-        })
+        // .addIndicators({
+        //     colorStart: "white",
+        //     colorTrigger: "white",
+        //     name: "slide"
+        // })
         .addTo(controller);
         // New Animation
         const pageTl = gsap.timeline();
@@ -50,12 +50,12 @@ function animateSlides() {
             duration: '100%',
             triggerHook: 0
         })
-        .addIndicators ({
-            colorStart: "white",
-            colorTrigger: "white",
-            name: "page",
-            indent: 200
-        })
+        // .addIndicators ({
+        //     colorStart: "white",
+        //     colorTrigger: "white",
+        //     name: "page",
+        //     indent: 200
+        // })
         .setPin(slide, {pushFollowers: false})
         // pin has the image stay in spot that it was scrolled to and then fade to the back of the page.
         .setTween(pageTl)
@@ -133,10 +133,16 @@ barba.init({
             beforeEnter(){
                 logo.href = '../index.html';
                 // dynamically update to avoid bug in link.
-                gsap.fromTo('.nav-header',1,{y:'100'}, {y:'0', ease: "power2.inOut"})
-            }
+                detailAnimation();
+                gsap.fromTo('.nav-header',1,{y:'100'}, {y:'0', ease: "power2.inOut"}
+            );
+        },
+        beforeLeave(){
+            controller.destroy();
+            detailScene.destroy();
         }
-    ],
+    }
+],
 
     transitions: [
         {
@@ -166,6 +172,32 @@ barba.init({
         }
     ]
 })
+
+function detailAnimation(){
+    controller = new ScrollMagic.Controller();
+    const slides = document.querySelectorAll('.detail-slide');
+    slides.forEach((slide,index,slides) => {
+        const slideTl = gsap.timeline({defaults: {duration:1}})
+        let nextSlide = slides.length - 1 === index ? 'end' : slides[index + 1]
+        const nextImg = nextSlide.querySelector('img');
+        // const nextText = nextSlide.querySelector('h1');
+        // const nextText2 = nextSlide.querySelector('p');
+        slideTl.fromTo(slide, {opacity:1}, {opacity:0});
+        slideTl.fromTo(nextSlide, {opacity:0}, {opacity:1}, '-=1');
+        slideTl.fromTo(nextImg, {x:'50%', y:'50%'}, {x:'0%', y:'0%'});
+        // slideTl.fromTo(nextText, {x:'-50%'}, {x:'0%'});
+        // slideTl.fromTo(nextText2, {y:'50%'}, {y:'0%'});
+        // scene
+        detailScene = new ScrollMagic.Scene({
+            triggerElement: slide,
+            trigger: slide,
+            duration: '100%',
+            triggerHook: 0
+        }).setPin(slide, {pushFollowers:false})
+        .setTween(slideTl)
+        .addTo(controller);
+    });
+}
 
 // EventListeners
 
