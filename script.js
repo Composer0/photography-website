@@ -23,7 +23,6 @@ function animateSlides() {
         slideTl.fromTo(img, {scale: 2}, {scale: 1}, '-=1');
         // after the two objects, the -=1 makes the animation occur 1 second sooner for a simultaneous effect.
         slideTl.fromTo(revealText, {x: '0%'}, {x:'100%'}, '-=0.75');
-        slideTl.fromTo(nav, {y: '-100%'}, {y:'0%'}, '=-0.5');
         slideScene = new ScrollMagic.Scene({
             triggerElement: slide,
             triggerHook: 0.25,
@@ -134,8 +133,6 @@ barba.init({
                 logo.href = '../index.html';
                 // dynamically update to avoid bug in link.
                 detailAnimation();
-                gsap.fromTo('.nav-header',1,{y:'100'}, {y:'0', ease: "power2.inOut"}
-            );
         },
         beforeLeave(){
             controller.destroy();
@@ -163,10 +160,14 @@ barba.init({
                 window.scrollTo(0,0);
                 // an animation
                 const tl = gsap.timeline({defaults: {ease: "power2.inOut"}});
-                tl.fromTo('.swipe', 1, {x:'0%'}, {x: '100%', stagger: 0.25, onComplete:done}
+                tl.fromTo('.swipe', 1, {x:'0%'},
+                
+                {x: '100%', stagger: 0.25, onComplete:done}
                 );
                 // this introduces the new page by producing the addiitonal two swipes.
                 tl.fromTo(next.container, 1, {opacity:0},{opacity:1}
+                    );
+                    tl.fromTo('.nav-header',1,{y:'-100'}, {y:'0', ease: "power2.inOut"}, '-=1.5'
                     );
             }
         }
