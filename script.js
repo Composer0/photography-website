@@ -5,6 +5,8 @@ let detailScene
 const mouse = document.querySelector('.cursor');
 const mouseTxt = mouse.querySelector('span');
 const burger = document.querySelector('.burger');
+const navBar = document.querySelector('.nav-bar');
+const home = document.querySelector('#logo');
 
 // Slides that occur throughout the page. Primarily from left to right concerning images and text.
 function animateSlides() {
@@ -112,6 +114,12 @@ function navToggle(e){
     }
 }
 
+function removeToggle(){
+    if(navBar.classList.contains('active')){
+        navBar.classList.remove('active');
+    }
+}
+
 // Barba Page Transitions
 barba.init({
     views: [
@@ -172,11 +180,11 @@ barba.init({
                     );
                     tl.fromTo('.nav-header',1,{y:'-100'}, {y:'0', ease: "power2.inOut"}, '-=1.5'
                     );
+                },
             }
-        }
-    ]
-})
-
+        ]
+    })
+    
 function detailAnimation(){
     controller = new ScrollMagic.Controller();
     const slides = document.querySelectorAll('.detail-slide');
@@ -205,6 +213,7 @@ function detailAnimation(){
 
 // EventListeners
 
+home.addEventListener('click', removeToggle)
 burger.addEventListener('click', navToggle)
 window.addEventListener('mousemove', cursor);
 window.addEventListener('mouseover', activeCursor);

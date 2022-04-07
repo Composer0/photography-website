@@ -12,6 +12,11 @@ body {
   overflow-x: hidden;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 main {
   position: absolute;
 }
@@ -19,7 +24,6 @@ main {
 #logo {
   color: #fff;
   font-family: "Abril Fatface";
-  z-index: 2;
 }
 
 .nav-header {
@@ -81,7 +85,7 @@ main {
   object-fit: cover;
 }
 
-.fashion-span {
+.informational-span {
   color: rgb(255, 139, 93);
 }
 .hike-span {
@@ -242,7 +246,7 @@ body.hide {
 
 /* other pages */
 
-.fashion1,.fashion2,.fashion3{
+.informational1,.informational2,.informational3{
   min-height: 90vh;
   display: flex;
   justify-content: center;
@@ -255,47 +259,47 @@ body.hide {
   position: relative;
 }
 
-.fashion-img{
+.informational-img{
   height: 70vh;
   flex-basis: 30rem;
 }
 
-.fashion-text{
+.informational-text{
   flex:1;
   position: relative;
   flex-basis: 25rem;
 }
 
-.fashion-img img{
+.informational-img img{
   width: 100%;
   height: 110%;
   object-fit: cover;
 }
 
-.fashion-text h1 {
+.informational-text h1 {
   font-size: 6rem;
   padding: 5rem 0rem;
 }
 
-.fashion1 h1{
+.informational1 h1{
   color: rgb(255, 139, 93);
 }
 
-.fashion2 h1{
+.informational2 h1{
   color: rgb(167, 110, 231);
 }
 
-.fashion3 h1{
+.informational3 h1{
   color: rgb(86, 124, 228);
 }
 
-.fashion-text p {
+.informational-text p {
   font-size: 2rem;
   padding: 2rem 2rem 0rem 0rem;
   margin-bottom: 10rem;
 }
 
-.fashion-nr{
+.informational-nr{
   font-size: 15rem;
   position: absolute;
   left: 35%;
@@ -330,14 +334,14 @@ body.hide {
   .hero-img{
     height: 50vh;
   }
-  .fashion-text h1{
+  .informational-text h1{
     font-size: 2rem;
     padding: 1rem 0rem;
   }
-  .fashion-text p{
+  .informational-text p{
     font-size: 1.2rem;
   }
-  .fashion-img img {
+  .informational-img img {
     height: 50vh;
     object-position: top;
     /* object-position manipulates where the image will focused inside of its display window. */
@@ -380,20 +384,21 @@ body.hide {
     width: 100%;
     text-align: center;
   }
-  .fashion-text p{
+  .informational-text p{
     margin-bottom: 5rem;
     padding: 0;
   }
-  .fashion-text h1{
+  .informational-text h1{
     margin: 2rem 0rem;
   }
-  .fashion-nr{
+  .informational-nr{
     font-size: 7rem;
   }
   .nav-bar{
     display: block;
   }
   .nav-links{
+    margin-top: 4rem;
     font-size: 2rem;
     text-align: center;
   }
