@@ -139,7 +139,7 @@ barba.init({
             }
         },
         {
-            namespace: 'fashion',
+            namespace: 'informational',
             beforeEnter(){
                 logo.href = '../index.html';
                 // dynamically update to avoid bug in link.
