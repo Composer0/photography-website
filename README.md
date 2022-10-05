@@ -1,4 +1,4 @@
-# website-template
+# Photography Website
 
 https://www.orionpalmer.com/Creative%20Website/index.html
 
