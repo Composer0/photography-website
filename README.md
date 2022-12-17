@@ -1,6 +1,6 @@
 # Photography Website
 
-https://www.orionpalmer.com/Creative%20Website/index.html
+https://www.orionpalmer.com/projects/CreativeWebsite/index.html
 
 Website template that features the use of 3 additional animation libraries in JavaScript.
 These libraries include GSAP, ScrollMagic, and Barba.
