@@ -1,21 +1,39 @@
-# Photography Website
+# Creative Website
 
 https://www.orionpalmer.com/projects/CreativeWebsite/index.html
 
-Website template that features the use of 3 additional animation libraries in JavaScript.
-These libraries include GSAP, ScrollMagic, and Barba.
+The "Creative Website" script is designed to create an interactive and visually appealing website with various animations and transitions. This documentation outlines the components, functions, and interactions within the script.
 
-GSAP: Is used to create a reveal and hide image effect when the user is scrolling through the website. It is also used to create a smooth change to the nav-header elements when navigation bars have been clicked/initiated.
+### Script Components
 
-ScrollMagic: Used to manipulate objects on the screen by bringing them into focus while scrolling is occurring.
+1. **Variables and Constants**
+   - `controller`, `slideScene`, `pageScene`, `detailScene`: Variables to manage ScrollMagic scenes.
+   - `mouse`, `mouseTxt`: Elements representing the cursor and its text content.
+   - `burger`, `navBar`, `home`: Elements related to the navigation bar and home link.
 
-Barba: Used for page transitions and holding over elements from original index to fashion index to create a seamless moving effect.
+2. **Functions**
+   - `animateSlides()`: Animates slide transitions and ScrollMagic scenes for each slide.
+   - `cursor(e)`: Updates the position of the cursor based on the mouse movement.
+   - `activeCursor(e)`: Applies active styles to the cursor based on the hovered element.
+   - `navToggle(e)`: Toggles the navigation bar's appearance on the burger menu click.
+   - `removeToggle()`: Removes the navigation bar's active state.
 
-Website is responsive and has been modified with the lowest value established at 1024px width.
+3. **Barba Page Transitions**
+   - Initializes Barba.js to manage page transitions.
+   - Defines view namespaces, which dictate animation and behavior for each view.
+   - Manages transitions for leaving and entering views, including animations and scroll positioning.
 
+4. **`detailAnimation()` Function**
+   - Animates slide transitions and effects for detail pages.
+   - Sets up ScrollMagic scenes for detail slide animations.
 
-Issues/Concerns:
-At this time the fill effect established by GSAP on the main index page works only on dark modes, I am looking into understand how the fill effect can work on websites with a lighter background color.
+### Interaction and Event Listeners
 
-Future Steps:
-Remove theme of travel and use as a mock Portfolio Site for clients.
+- `home.addEventListener('click', removeToggle)`: Removes the navigation bar's active state when the home link is clicked.
+- `burger.addEventListener('click', navToggle)`: Toggles the navigation bar's appearance on the burger menu click.
+- `window.addEventListener('mousemove', cursor)`: Updates the cursor's position based on mouse movement.
+- `window.addEventListener('mouseover', activeCursor)`: Applies active styles to the cursor based on the hovered element.
+
+### Conclusion
+
+The "Creative Website" script creates an engaging and interactive website with various animations, transitions, and effects. Developers can learn from this script to implement custom animations, page transitions, and interactive cursor effects to enhance the user experience of their websites. This script demonstrates the effective use of libraries like ScrollMagic and Barba.js to create seamless and visually captivating web experiences.
